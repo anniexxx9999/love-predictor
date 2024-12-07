@@ -34,14 +34,14 @@ export function useTheme() {
   }, [])
 
   // 更新DOM和localStorage
-  const updateTheme = useCallback((dark: boolean) => {
-    if (dark) {
+  const updateTheme = useCallback(() => {
+    if (isDark) {
       document.documentElement.classList.add('dark')
     } else {
       document.documentElement.classList.remove('dark')
     }
-    localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light')
-  }, [])
+    localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light')
+  }, [isDark])
 
   // 切换主题
   const toggleTheme = useCallback(() => {
