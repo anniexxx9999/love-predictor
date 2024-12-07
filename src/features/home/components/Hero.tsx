@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { type HeroProps } from '../types'
+import { useRouter } from 'next/navigation'
 
 export function Hero({
   title = "预测你们的恋爱契合度",
@@ -12,6 +13,18 @@ export function Hero({
   backgroundImage = "/images/hero-bg.svg"
 }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+
+  const handleStartTest = useCallback(() => {
+    // 添加loading状态防止重复点击
+    const button = document.activeElement as HTMLButtonElement
+    if (button) {
+      button.disabled = true
+    }
+    
+    // 立即跳转
+    router.push('/assessment')
+  }, [router])
 
   // 鼠标移动视差效果
   useEffect(() => {
@@ -108,45 +121,12 @@ export function Hero({
         </p>
 
         <button
-          onClick={onCtaClick}
-          className="
-            group
-            relative
-            px-12 py-5 
-            text-lg font-medium
-            bg-gradient-to-r from-primary to-[#FF85A9]
-            text-primary-foreground
-            rounded-full
-            transform hover:scale-105 
-            transition-all duration-300
-            shadow-lg hover:shadow-xl
-            hover:shadow-primary/20
-            animate-fade-in animation-delay-400
-            overflow-hidden
-          "
+          onClick={handleStartTest}
+          className="px-8 py-3 bg-primary text-primary-foreground rounded-full
+            hover:bg-primary/90 transition-all text-lg font-medium
+            disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <span className="relative z-10 flex items-center gap-2">
-            {ctaText}
-            <svg 
-              className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M13 7l5 5m0 0l-5 5m5-5H6" 
-              />
-            </svg>
-          </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FF85A9] to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
-          {/* 点击涟漪效果 */}
-          <div className="absolute inset-0 pointer-events-none">
-            <span className="absolute inset-0 rounded-full bg-white/30 animate-ripple" />
-          </div>
+          {ctaText}
         </button>
       </div>
     </section>

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 亮色主题变量 */
 :root {
   --background: #FFF5F7;
   --foreground: #1a1a1a;
@@ -14,7 +13,6 @@
   --muted-foreground: #737373;
 }
 
-/* 深色主题变量 */
 .dark {
   --background: #1a1a1a;
   --foreground: #f5f5f5;
@@ -26,42 +24,7 @@
   --muted-foreground: #a3a3a3;
 }
 
-/* 平滑过渡 */
-:root {
-  --transition-duration: 0.3s;
-}
-
-* {
-  transition: background-color var(--transition-duration),
-              border-color var(--transition-duration),
-              color var(--transition-duration);
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
-}
-
-/* 动画延迟工具类 */
-.animation-delay-200 {
-  animation-delay: 200ms;
-}
-
-.animation-delay-400 {
-  animation-delay: 400ms;
-}
-
-/* 添加平滑滚动 */
-html {
-  scroll-behavior: smooth;
-}
-
-/* 添加渐变文本工具类 */
-.gradient-text {
-  @apply bg-gradient-to-r from-[#FF4B91] to-[#FF85A9] bg-clip-text text-transparent;
-}
-
-/* 优化动画 */
-.animate-fade-in {
-  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
