@@ -2,20 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 亮色主题变量 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFF5F7;
+  --foreground: #1a1a1a;
+  --primary: #FF4B91;
+  --primary-foreground: #ffffff;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --muted: #f8e5e9;
+  --muted-foreground: #737373;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 深色主题变量 */
+.dark {
+  --background: #1a1a1a;
+  --foreground: #f5f5f5;
+  --primary: #FF69B4;
+  --primary-foreground: #ffffff;
+  --card: #262626;
+  --card-foreground: #f5f5f5;
+  --muted: #2a2a2a;
+  --muted-foreground: #a3a3a3;
+}
+
+/* 平滑过渡 */
+:root {
+  --transition-duration: 0.3s;
+}
+
+* {
+  transition: background-color var(--transition-duration),
+              border-color var(--transition-duration),
+              color var(--transition-duration);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 动画延迟工具类 */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+/* 添加平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 添加渐变文本工具类 */
+.gradient-text {
+  @apply bg-gradient-to-r from-[#FF4B91] to-[#FF85A9] bg-clip-text text-transparent;
+}
+
+/* 优化动画 */
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
