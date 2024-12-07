@@ -52,6 +52,10 @@ export function useTheme() {
     })
   }, [updateTheme])
 
+  useEffect(() => {
+    updateTheme()
+  }, [updateTheme])
+
   return {
     isDark,
     toggleTheme

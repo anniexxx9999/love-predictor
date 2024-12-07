@@ -1,17 +1,16 @@
 "use client"
 
 import { useEffect, useRef, useCallback } from 'react'
-import Image from 'next/image'
 import { type HeroProps } from '../types'
 import { useRouter } from 'next/navigation'
 
-export function Hero({
+export const Hero: React.FC<HeroProps> = ({
   title = "预测你们的恋爱契合度",
   subtitle = "基于心理学和数据分析,帮助你找到最适合的伴侣",
   ctaText = "开始测试",
   onCtaClick,
   backgroundImage = "/images/hero-bg.svg"
-}: HeroProps) {
+}) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 

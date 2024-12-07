@@ -30,7 +30,7 @@ export function ResultSection({
       await navigator.clipboard.writeText(shareText)
       alert('分享文本已复制到剪贴板！')
       setShowShareMenu(false)
-    } catch (err) {
+    } catch (_) {
       alert('复制失败，请手动复制。')
     }
   }, [shareText])
@@ -45,7 +45,7 @@ export function ResultSection({
           url: window.location.href
         })
         setShowShareMenu(false)
-      } catch (err) {
+      } catch (_) {
         if (err instanceof Error && err.name !== 'AbortError') {
           console.error('分享失败:', err)
         }
